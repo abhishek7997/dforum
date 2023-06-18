@@ -1,0 +1,30 @@
+<div class="d-flex bg-light my-1">
+  <div class="flex-column justify-content-center align-items-center px-2 py-2">
+    <a
+      [href]="'user/' + post.userId"
+      class="bg-dark d-inline-flex align-items-center justify-content-center link-underline link-underline-opacity-0"
+      style="width: 64px; height: 64px"
+    >
+      <div class="text-light fs-3">
+        {{ post.username ? post.username[0] : "" }}
+      </div>
+    </a>
+    <p class="text-center">
+      <a
+        [href]="'user/' + post.userId"
+        class="text-center link-underline link-underline-opacity-0"
+        >{{ post.username }}</a
+      >
+    </p>
+  </div>
+  <div class="flex-fill px-2 py-2 flex-column d-flex justify-content-between">
+    <div class="flex-fill" style="width: 100%">
+      <div style="width: 100%" [innerHTML]="post.postBody"></div>
+    </div>
+    <div class="border-top">
+      <p class="py-1 text-muted">
+        {{ post.createdAt ? convertISOToReadableDate(post.createdAt) : null }}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="container-fluid py-2 px-2 bg-dark">
+    <div
+      class="d-flex align-items-center justify-content-center text-light display-4 px-2"
+    >
+      Threads
+    </div>
+  </div>
+  <div class="container-fluid py-2">
+    <a [href]="'thread/create'" class="btn btn-dark py-1"> Create a thread </a>
+  </div>
+  <div
+    *ngFor="let thread of threads ? threads.content : []"
+    class="d-flex flex-nowrap bg-light my-1"
+    style="height: 64px"
+  >
+    <a
+      [href]="'user/' + thread.userId"
+      class="bg-dark d-inline-flex align-items-center justify-content-center link-underline link-underline-opacity-0"
+      style="width: 64px; height: 64px"
+    >
+      <div class="text-light fs-3">
+        {{ thread.username ? thread.username[0] : "" }}
+      </div>
+    </a>
+    <div class="d-flex flex-column ms-3 justify-content-evenly">
+      <a
+        [href]="'thread/' + thread.threadId"
+        class="text-primary fs-5 link-underline link-underline-opacity-0"
+        >{{ thread.title }}</a
+      >
+      <div class="d-flex flex-wrap justify-content-start">
+        <a
+          [href]="'user/' + thread.userId"
+          class="text-muted link-underline link-underline-opacity-0"
+          >{{ thread.username }}</a
+        >
+        <div class="ms-3 text-muted">
+          {{
+            thread.createdAt ? convertISOToReadableDate(thread.createdAt) : null
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>

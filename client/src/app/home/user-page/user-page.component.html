@@ -1,0 +1,52 @@
+<div *ngIf="userDetails" class="container-lg bg-white px-2 py-2 min-height-100">
+  <div class="container-fluid py-2 px-2 bg-dark mb-2">
+    <div
+      class="d-flex align-items-center justify-content-left text-light display-6 px-2"
+    >
+      {{ userDetails.username }}
+    </div>
+  </div>
+  <div class="d-flex mt-2">
+    <div class="">
+      <a
+        [href]="'user/' + userDetails.userId"
+        class="bg-dark d-inline-flex align-items-center justify-content-center link-underline link-underline-opacity-0"
+        style="width: 64px; height: 64px"
+      >
+        <div class="text-light fs-3">
+          {{ userDetails.username ? userDetails.username[0] : "" }}
+        </div>
+      </a>
+    </div>
+    <div class="ms-3">
+      <p>{{ userDetails.username }}</p>
+      <p class="border-top text-muted">
+        {{
+          userDetails.createdAt
+            ? convertISOToReadableDate(userDetails.createdAt)
+            : null
+        }}
+      </p>
+    </div>
+  </div>
+  <div class="container d-flex justify-content-evenly">
+    <div class="d-flex flex-column flex-fill">
+      <app-threads-list [threads]="userThreads"></app-threads-list>
+    </div>
+    <div
+      *ngIf="userPosts && userPosts.content"
+      class="d-flex flex-column flex-fill"
+    >
+      <div class="container-fluid py-2 px-2 bg-dark">
+        <div
+          class="d-flex align-items-center justify-content-center text-light display-4 px-2"
+        >
+          Posts
+        </div>
+      </div>
+      <div *ngFor="let post of userPosts.content || []">
+        <app-post [post]="post"></app-post>
+      </div>
+    </div>
+  </div>
+</div>

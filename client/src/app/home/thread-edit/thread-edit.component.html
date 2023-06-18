@@ -1,0 +1,53 @@
+<div class="container-lg">
+  <form [formGroup]="form" class="form-group" (ngSubmit)="onSubmit()">
+    <label class="form-label" for="title">Title</label>
+    <input
+      class="form-control"
+      type="text"
+      required
+      name="title"
+      id="title"
+      formControlName="title"
+    />
+    <div
+      *ngIf="
+        form.controls['title'].invalid &&
+        (form.controls['title'].dirty || form.controls['title'].touched)
+      "
+    >
+      <div
+        *ngIf="form.controls['title'].errors!['required']"
+        class="text-danger"
+      >
+        Title is required.
+      </div>
+    </div>
+    <label class="form-label" for="content">Content</label>
+    <div class="NgxEditor__Wrapper mb-2" id="content">
+      <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+      <ngx-editor
+        [editor]="editor"
+        formControlName="editorContent"
+        [disabled]="false"
+        [placeholder]="'Type here...'"
+        [id]="'editorContent'"
+        outputFormat="html"
+      ></ngx-editor>
+    </div>
+    <div
+      *ngIf="
+        form.controls['editorContent'].invalid &&
+        (form.controls['editorContent'].dirty ||
+          form.controls['editorContent'].touched)
+      "
+    >
+      <div
+        *ngIf="form.controls['editorContent'].errors!['required']"
+        class="text-danger"
+      >
+        Content is required.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-dark">Update Thread</button>
+  </form>
+</div>
