@@ -4,11 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/shared/service/authentication.service';
 import { PostService } from 'src/app/shared/service/post.service';
 import { ThreadService } from 'src/app/shared/service/thread.service';
-import { User } from '../login/types/UserLoginDetails';
 import { UserDetails } from './types/UserDetails';
 import { DatePipe } from '@angular/common';
-import { Post } from '../post/types/Post';
-import { Thread } from '../thread-page/types/Thread';
 import { ThreadsPaginated } from '../threads-list/types/ThreadsPaginated';
 import { PostsPaginated } from '../post/types/PostsPaginated';
 
@@ -23,7 +20,7 @@ export class UserPageComponent implements OnInit {
   userPosts!: PostsPaginated;
   userThreads!: ThreadsPaginated;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private httpClient: HttpClient, private postService: PostService, private threadService: ThreadService, private datePipe: DatePipe) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private postService: PostService, private threadService: ThreadService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     try {

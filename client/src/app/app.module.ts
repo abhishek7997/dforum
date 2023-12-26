@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from './shared/interceptors/auth-interceptor.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthenticationService } from './shared/service/authentication.service';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({

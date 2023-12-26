@@ -51,15 +51,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try{
             username = jwtService.extractUsername(jwtToken);
         } catch (ExpiredJwtException e) {
-            ResponseCookie responseCookie = ResponseCookie.from("jwt", null)
+            ResponseCookie responseCookie = ResponseCookie.from("jwt")
                     .httpOnly(true)
                     .secure(false)
                     .sameSite("Lax")
                     .path("/")
                     .maxAge(0)
                     .domain("localhost").build();
-            HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.SET_COOKIE, responseCookie.toString());
             response.addHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
             chain.doFilter(request, response);
             return;

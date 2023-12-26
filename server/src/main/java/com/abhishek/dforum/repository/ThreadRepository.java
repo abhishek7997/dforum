@@ -1,6 +1,5 @@
 package com.abhishek.dforum.repository;
 
-import com.abhishek.dforum.model.Post;
 import com.abhishek.dforum.model.Thread;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
@@ -9,8 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 public interface ThreadRepository extends JpaRepository<Thread, Long> {
     @Query(value = "SELECT * FROM threads WHERE threads.user_id = :userId ORDER BY threads.created_at DESC", nativeQuery = true)

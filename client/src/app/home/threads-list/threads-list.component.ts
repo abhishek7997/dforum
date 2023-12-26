@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ThreadService } from 'src/app/shared/service/thread.service';
 import { ThreadsPaginated } from './types/ThreadsPaginated';
 import { DatePipe } from '@angular/common';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-threads-list',
@@ -14,10 +16,12 @@ export class ThreadsListComponent implements OnInit {
   page: number = 0;
   pageSize: number = 10;
 
-  constructor(private threadService: ThreadService, private datePipe: DatePipe) { }
+  constructor(private threadService: ThreadService, private datePipe: DatePipe, private router: Router) { }
 
   ngOnInit(): void {
-    this.getThreads()
+    if (this.router.url === '/home') {
+      this.getThreads()
+    }
   }
 
   getThreads() {
